@@ -7,19 +7,28 @@
 */
 
 body {
-    background-color: #f2efe7; /* tło całej strony */
-    color: #2c0c24;          /* kolor tekstu */
+    background-color: #f2efe7; 
+    color: #2c0c24;          
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
   }
   
   header {
-    background-color: #d8d2dc; /* tło nagłówka */
+    background-color: #d8d2dc; 
     padding: 20px;
     border-bottom: 2px solid #8b8392;
+    display: flex;
+    align-items: center;
   }
   
+  .logo {
+    width: 150px;
+    height: auto;
+    vertical-align: middle;
+    margin-right: 10px;
+  }
+
   nav {
     background-color: #8b8392; /* tło nawigacji */
     border: 1px solid #8b8392;
