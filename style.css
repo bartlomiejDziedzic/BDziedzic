@@ -1,0 +1,62 @@
+/* paleta kolorów:
+   - #f2efe7 -kremowy
+   - #d8d2dc -szary, jasny
+   - #8b8392 - szary
+   - #ee7e49 - pomarancz
+   - #2c0c24 -fiolet zblizony do czarnego
+*/
+
+body {
+    background-color: #f2efe7; /* tło całej strony */
+    color: #2c0c24;          /* kolor tekstu */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #d8d2dc; /* tło nagłówka */
+    padding: 20px;
+    border-bottom: 2px solid #8b8392;
+  }
+  
+  nav {
+    background-color: #8b8392; /* tło nawigacji */
+    border: 1px solid #8b8392;
+    padding: 10px;
+  }
+  
+  nav a {
+    color: #2c0c24; 
+    background-color:#8b8392 ;
+    text-decoration: none;
+    margin-right: 10px;
+    padding: 0px;
+  }
+  
+  nav a:hover {
+    color: #f2efe7;
+    background-color: #fb935b;          
+  }
+  
+  main {
+    padding: 20px;
+  }
+  
+  main div {
+    background-color: #d8d2dc; 
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #8b8392;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    color: #fb935b;           
+  }
+  
+  footer {
+    background-color: #d8d2dc;
+    text-align: center;
+    padding: 10px;
+    border-top: 2px solid #d8d2dc;
+  }
