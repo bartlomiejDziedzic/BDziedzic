@@ -73,6 +73,7 @@ main {
 }
 
 main div {
+  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -99,6 +100,28 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
+#projectsTable{
+  flex: 1;
+  background-color: #d8d2dc;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: stretch;
+  margin: 10px;
+  text-align: left;
+}
+thead{
+  padding: 10px;
+  text-align: center;
+  color: #fb935b;
+  gap: 20px;
+}
+tbody{
+  gap: 20px;
+}
+td{
+  padding: 10px;
+}
 footer {
   background-color: #d8d2dc;
   text-align: center;
