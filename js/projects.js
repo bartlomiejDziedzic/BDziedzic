@@ -18,8 +18,10 @@ fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435
         let projects = Array.isArray(data) ? data : Object.values(data);
 
         const tbody = document.querySelector("#projectsTable tbody");
+        const cardsContainer = document.getElementById("projectsCards");
 
         projects.forEach(project => {
+            //towrzenie tabeli
             const row = document.createElement("tr");
 
             const nameCell = document.createElement("td");
@@ -50,6 +52,31 @@ fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435
 
             // Dodanie wiersza do tabeli
             tbody.appendChild(row);
+            //tworzenie kart
+            const card = document.createElement('div');
+            card.classList.add('card');
+
+            const title = document.createElement('h3');
+            title.textContent = project.name;
+            card.appendChild(title);
+
+            const date = document.createElement('p');
+            date.textContent = project.date && project.date !== "null"
+                ? project.date
+                : "W trakcie realizacji";
+            card.appendChild(date);
+
+            const desc = document.createElement('p');
+            desc.textContent = project.description;
+            card.appendChild(desc);
+
+            const tech = document.createElement('p');
+            tech.textContent = Array.isArray(project.technologies)
+                ? project.technologies.join(', ')
+                : 'Brak danych';
+            card.appendChild(tech);
+
+            cardsContainer.appendChild(card);
         });
     })
     .catch(error => console.log('error', error));
