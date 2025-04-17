@@ -73,6 +73,7 @@ main {
 }
 
 main div {
+  text-align: left;
   margin-bottom: 20px;
 }
 
@@ -99,6 +100,33 @@ h1, h2, h3, h4, h5, h6 {
   box-sizing: border-box;
 }
 
+#projectsTable{
+  flex: 1;
+  background-color: #d8d2dc;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  align-items: stretch;
+  margin: 10px;
+  text-align: left;
+}
+thead{
+  padding: 10px;
+  text-align: center;
+  color: #fb935b;
+  gap: 20px;
+}
+tbody{
+  gap: 20px;
+}
+td{
+  padding: 10px;
+}
+
+#projectsCards{
+  display: none;
+}
+
 footer {
   background-color: #d8d2dc;
   text-align: center;
@@ -120,9 +148,27 @@ footer {
     font-size: 0.9em;
   }
 
-
   .list {
     flex: 1 1 calc(50% - 20px);
+  }
+
+  #projectsTable{
+    display: none;
+  }
+  #projectsCards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 1 1 calc(50% - 20px);
+    background: #d8d2dc;
+    border: 2px solid #8b8392;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 8px;
   }
 }
 
@@ -151,7 +197,7 @@ footer {
   }
 
   header h1 {
-    font-size: 1.5em;  /* mniejszy rozmiar czcionki */
+    font-size: 1.5em;
     text-align: center;
   }
 
@@ -175,5 +221,25 @@ footer {
     width: 100%;
     flex: none;
     margin-bottom: 20px;
+  }
+
+  #projectsTable{
+    display: none;
+  }
+
+  #projectsCards{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-between;
+  }
+
+  .card {
+    flex: 1 1 calc(100% - 20px);
+    background: #d8d2dc;
+    border: 2px solid #8b8392;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 8px;
   }
 }
