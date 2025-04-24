@@ -1,8 +1,10 @@
-const sortSelect = document.getElementById("sortSelect");
-const tbody = document.querySelector("#projectsTable tbody");
+const sortSelect     = document.getElementById("sortSelect");
+const filterControls = document.getElementById("filterControls");
+const tbody          = document.querySelector("#projectsTable tbody");
 const cardsContainer = document.getElementById("projectsCards");
 
 let projectsData = [];
+let selectedTech = new Set()
 
 
 function renderProjects(projects) {
@@ -62,29 +64,71 @@ fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435
     .catch(err => console.error(err));
 
 // Funkcja do sortowania
-function sortProjects(criteria, order) {
-    const sorted = [...projectsData].sort((a, b) => {
+function sortArray(arr, criteria, order) {
+    return [...arr].sort((a, b) => {
         if (criteria === "name") {
-            return order === "asc"
+            return order==="asc"
                 ? a.name.localeCompare(b.name)
                 : b.name.localeCompare(a.name);
-        } else if (criteria === "date") {
-
-            const getTime = d => {
-                if (!d || d === "null") return order === "asc"
-                    ? Date.now() + 10**15
+        } else {
+            const toTs = d => {
+                if (!d || d==="null") return order==="asc"
+                    ? Date.now()+1e15
                     : 0;
                 return new Date(d).getTime();
             };
-            return order === "asc"
-                ? getTime(a.date) - getTime(b.date)
-                : getTime(b.date) - getTime(a.date);
+            return order==="asc"
+                ? toTs(a.date) - toTs(b.date)
+                : toTs(b.date) - toTs(a.date);
         }
     });
+}
+
+function applyFiltersAndSort() {
+    let filtered = projectsData.filter(p => {
+        // jeśli nic nie zaznaczone – pokazuj wszystko
+        if (selectedTech.size === 0) return true;
+        if (!Array.isArray(p.technologies)) return false;
+        // muszą zawierać wszystkie wybrane technologie
+        return [...selectedTech].some(tech => p.technologies.includes(tech));
+    });
+    const [crit, ord] = sortSelect.value.split("-");
+    const sorted = sortArray(filtered, crit, ord);
     renderProjects(sorted);
 }
 
-sortSelect.addEventListener("change", () => {
-    const [crit, ord] = sortSelect.value.split("-");
-    sortProjects(crit, ord);
-});
+
+fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435", {
+    method: 'GET',
+    headers: { "Content-Type": "application/json" },
+    redirect: 'follow'
+})
+    .then(res => res.json())
+    .then(json => {
+        projectsData = Array.isArray(json.data)
+            ? json.data
+            : Object.values(json.data);
+
+        const techSet = new Set();
+        projectsData.forEach(p => {
+            if (Array.isArray(p.technologies))
+                p.technologies.forEach(t => techSet.add(t));
+        });
+
+        techSet.forEach(tech => {
+            const lbl = document.createElement("label");
+            lbl.innerHTML = `<input type="checkbox" value="${tech}"> ${tech}`;
+            filterControls.appendChild(lbl);
+
+            lbl.querySelector("input").addEventListener("change", e => {
+                if (e.target.checked) selectedTech.add(tech);
+                else selectedTech.delete(tech);
+                applyFiltersAndSort();
+            });
+        });
+
+        applyFiltersAndSort();
+    })
+    .catch(err => console.error(err));
+
+sortSelect.addEventListener("change", applyFiltersAndSort);
