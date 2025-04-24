@@ -1,82 +1,134 @@
-// Ustawienia nagłówków żądania
-var myHeaders = new Headers();
-myHeaders.append("Content-Type", "application/json");
+const sortSelect     = document.getElementById("sortSelect");
+const filterControls = document.getElementById("filterControls");
+const tbody          = document.querySelector("#projectsTable tbody");
+const cardsContainer = document.getElementById("projectsCards");
 
-var requestOptions = {
+let projectsData = [];
+let selectedTech = new Set()
+
+
+function renderProjects(projects) {
+
+    tbody.innerHTML = "";
+    cardsContainer.innerHTML = "";
+
+    projects.forEach(project => {
+        const row = document.createElement("tr");
+        // nazwa
+        const nameCell = document.createElement("td");
+        nameCell.textContent = project.name;
+        row.appendChild(nameCell);
+        // data
+        const dateCell = document.createElement("td");
+        dateCell.textContent = (project.date && project.date !== "null")
+            ? project.date
+            : "W trakcie realizacji";
+        row.appendChild(dateCell);
+        // opis
+        const descCell = document.createElement("td");
+        descCell.textContent = project.description;
+        row.appendChild(descCell);
+        // technologie
+        const techCell = document.createElement("td");
+        techCell.textContent = Array.isArray(project.technologies)
+            ? project.technologies.join(", ")
+            : "Brak danych";
+        row.appendChild(techCell);
+        tbody.appendChild(row);
+
+        // KARTA
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.innerHTML = `
+      <h3>${project.name}</h3>
+      <p>${(project.date && project.date !== "null") ? project.date : "W trakcie realizacji"}</p>
+      <p>${project.description}</p>
+      <p>${Array.isArray(project.technologies) ? project.technologies.join(", ") : "Brak danych"}</p>
+    `;
+        cardsContainer.appendChild(card);
+    });
+}
+
+// Fetch i inicjalne wyświetlenie
+fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435", {
     method: 'GET',
-    headers: myHeaders,
+    headers: { "Content-Type": "application/json" },
     redirect: 'follow'
-};
-
-fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435", requestOptions)
-    .then(response => response.json())
-    .then(data => {
-        console.log("Odebrane dane:", data.data);
-    //mój najwiekszy bład, zostanie ze mną do konca
-        data=data.data;
-
-        let projects = Array.isArray(data) ? data : Object.values(data);
-
-        const tbody = document.querySelector("#projectsTable tbody");
-        const cardsContainer = document.getElementById("projectsCards");
-
-        projects.forEach(project => {
-            //towrzenie tabeli
-            const row = document.createElement("tr");
-
-            const nameCell = document.createElement("td");
-            nameCell.textContent = project.name;
-            row.appendChild(nameCell);
-
-
-            const dateCell = document.createElement("td");
-            if (project.date === "null" || project.date === null) {
-                dateCell.textContent = "W trakcie realizacji";
-            } else {
-                dateCell.textContent = project.date;
-            }
-            row.appendChild(dateCell);
-
-            // Komórka dla opisu
-            const descriptionCell = document.createElement("td");
-            descriptionCell.textContent = project.description;
-            row.appendChild(descriptionCell);
-
-            const techCell = document.createElement("td");
-            if (Array.isArray(project.technologies)) {
-                techCell.textContent = project.technologies.join(", ");
-            } else {
-                techCell.textContent = "Brak danych";
-            }
-            row.appendChild(techCell);
-
-            // Dodanie wiersza do tabeli
-            tbody.appendChild(row);
-            //tworzenie kart
-            const card = document.createElement('div');
-            card.classList.add('card');
-
-            const title = document.createElement('h3');
-            title.textContent = project.name;
-            card.appendChild(title);
-
-            const date = document.createElement('p');
-            date.textContent = project.date && project.date !== "null"
-                ? project.date
-                : "W trakcie realizacji";
-            card.appendChild(date);
-
-            const desc = document.createElement('p');
-            desc.textContent = project.description;
-            card.appendChild(desc);
-
-            const tech = document.createElement('p');
-            tech.textContent = Array.isArray(project.technologies)
-                ? project.technologies.join(', ')
-                : 'Brak danych';
-            card.appendChild(tech);
-
-            cardsContainer.appendChild(card);
-        });
+})
+    .then(res => res.json())
+    .then(json => {
+        let data = Array.isArray(json.data) ? json.data : Object.values(json.data);
+        projectsData = data;
+        renderProjects(projectsData);
     })
-    .catch(error => console.log('error', error));
+    .catch(err => console.error(err));
+
+// Funkcja do sortowania
+function sortArray(arr, criteria, order) {
+    return [...arr].sort((a, b) => {
+        if (criteria === "name") {
+            return order==="asc"
+                ? a.name.localeCompare(b.name)
+                : b.name.localeCompare(a.name);
+        } else {
+            const toTs = d => {
+                if (!d || d==="null") return order==="asc"
+                    ? Date.now()+1e15
+                    : 0;
+                return new Date(d).getTime();
+            };
+            return order==="asc"
+                ? toTs(a.date) - toTs(b.date)
+                : toTs(b.date) - toTs(a.date);
+        }
+    });
+}
+
+function applyFiltersAndSort() {
+    let filtered = projectsData.filter(p => {
+        // jeśli nic nie zaznaczone – pokazuj wszystko
+        if (selectedTech.size === 0) return true;
+        if (!Array.isArray(p.technologies)) return false;
+        // muszą zawierać wszystkie wybrane technologie
+        return [...selectedTech].some(tech => p.technologies.includes(tech));
+    });
+    const [crit, ord] = sortSelect.value.split("-");
+    const sorted = sortArray(filtered, crit, ord);
+    renderProjects(sorted);
+}
+
+
+fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435", {
+    method: 'GET',
+    headers: { "Content-Type": "application/json" },
+    redirect: 'follow'
+})
+    .then(res => res.json())
+    .then(json => {
+        projectsData = Array.isArray(json.data)
+            ? json.data
+            : Object.values(json.data);
+
+        const techSet = new Set();
+        projectsData.forEach(p => {
+            if (Array.isArray(p.technologies))
+                p.technologies.forEach(t => techSet.add(t));
+        });
+
+        techSet.forEach(tech => {
+            const lbl = document.createElement("label");
+            lbl.innerHTML = `<input type="checkbox" value="${tech}"> ${tech}`;
+            filterControls.appendChild(lbl);
+
+            lbl.querySelector("input").addEventListener("change", e => {
+                if (e.target.checked) selectedTech.add(tech);
+                else selectedTech.delete(tech);
+                applyFiltersAndSort();
+            });
+        });
+
+        applyFiltersAndSort();
+    })
+    .catch(err => console.error(err));
+
+sortSelect.addEventListener("change", applyFiltersAndSort);

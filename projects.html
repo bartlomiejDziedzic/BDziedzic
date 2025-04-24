@@ -20,6 +20,19 @@
 
         <main style="background-color:#8b8392">
             <h2>Projekty nad którymi pracowałem</h2>
+            <div id="sortControls">
+                <label for="sortSelect">Sortuj wg:</label>
+                <select id="sortSelect">
+                    <option value="name-asc">Nazwa (A → Z)</option>
+                    <option value="name-desc">Nazwa (Z → A)</option>
+                    <option value="date-asc">Data (rosnąco)</option>
+                    <option value="date-desc">Data (malejąco)</option>
+                </select>
+            </div>
+            <div id="filterControls">
+                <span>Filtruj po technologiach:</span>
+                <!-- tutaj w JS wstawi się lista checkboxów -->
+            </div>
             <table id="projectsTable">
                 <thead>
                 <tr>
