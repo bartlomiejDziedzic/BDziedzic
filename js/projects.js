@@ -35,6 +35,11 @@ function renderProjects(projects) {
             : "Brak danych";
         row.appendChild(techCell);
         tbody.appendChild(row);
+        //odnosnik
+        row.style.cursor = "pointer";
+        row.addEventListener("click", () => {
+            window.location.href = `ProjectDetails.html?id=${encodeURIComponent(project.id)}`;
+        });
 
         // KARTA
         const card = document.createElement("div");
@@ -46,6 +51,16 @@ function renderProjects(projects) {
       <p>${Array.isArray(project.technologies) ? project.technologies.join(", ") : "Brak danych"}</p>
     `;
         cardsContainer.appendChild(card);
+
+        card.style.cursor = "pointer";
+        card.addEventListener("click", () => {
+            window.location.href = `ProjectDetails.html?id=${encodeURIComponent(project.id)}`;
+        });
+    });
+
+    card.style.cursor = "pointer";
+    card.addEventListener("click", () => {
+        window.location.href = `ProjectDetails.html?id=${encodeURIComponent(project.id)}`;
     });
 }
 
