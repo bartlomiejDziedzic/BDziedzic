@@ -142,6 +142,31 @@ footer {
   border-top: 2px solid #d8d2dc;
 }
 
+.project-detail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.project-title {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.project-detail .info {
+  flex: 1 1 50%;
+  min-width: 250px;
+}
+
+.project-detail .project-image {
+  flex: 1 1 50%;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
 /* Tablet: szerokość ≥ 768px i ≤ 1023px */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 
