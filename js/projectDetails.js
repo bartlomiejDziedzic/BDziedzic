@@ -38,10 +38,12 @@ if (!projectId) {
                     ? project.technologies.join(", ")
                     : "Brak danych"}</p>
           <div class="long-description">
-            <p>${project.description_long || 'Brak dodatkowego opisu.'}</p>
+            <p>${project.long_description  || 'Brak dodatkowego opisu.'}</p>
           </div>
         </div>
-    
+            <div class="mobile-description">
+            <p>${project.long_description || 'Brak dodatkowego opisu.'}</p>
+         </div>
         </article>
       `;
         })
