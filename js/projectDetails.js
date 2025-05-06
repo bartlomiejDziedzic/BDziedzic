@@ -24,6 +24,7 @@ if (!projectId) {
             container.innerHTML = `
         <article class="project-detail">
         <h2 class="project-title">${project.name}</h2>
+        <div class="project-content">
         <div class="image-wrapper">
           <img src="${imgSrc}"
                alt="${project.name}"
@@ -39,6 +40,7 @@ if (!projectId) {
                     : "Brak danych"}</p>
           <div class="long-description">
             <p>${project.long_description  || 'Brak dodatkowego opisu.'}</p>
+          </div>
           </div>
         </div>
             <div class="mobile-description">
