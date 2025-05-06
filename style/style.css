@@ -166,6 +166,7 @@ footer {
 }
 
 .project-detail .project-content .project-image {
+  align-content: center;
   flex: 1 1 50%;
   max-width: 45%;
   height: auto;
@@ -298,10 +299,14 @@ footer {
     box-sizing: border-box;
     border-radius: 8px;
   }
-
-  .project-detail .project-image{
+  .project-detail .project-content{
+    flex-direction: column;
+  }
+  .project-detail .project-content .project-image {
+    flex:1 1 100%;
     width: 100%;
   }
+
     .mobile-description{
         display:inline;
         width: 100%;
