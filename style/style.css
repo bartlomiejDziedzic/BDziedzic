@@ -183,6 +183,20 @@ footer {
     display:none;
     width: 100%;
 }
+#galery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 20px;
+}
+
+.gallery-item {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  object-fit: cover;
+}
 
 /* Tablet: szerokość ≥ 768px i ≤ 1023px */
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -226,6 +240,10 @@ footer {
     }
   .long-description{
     display: none;
+  }
+  #galery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -313,5 +331,9 @@ footer {
     }
   .long-description{
     display: none;
+  }
+  #galery {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
