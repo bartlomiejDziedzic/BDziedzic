@@ -99,15 +99,73 @@ h1, h2, h3, h4, h5, h6 {
   padding: 15px;
   box-sizing: border-box;
 }
+
 #sortControls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
   margin: 20px auto;
-  text-align: center;
-}
-#sortSelect {
-  padding: 5px 10px;
-  font-size: 1em;
 }
 
+#sortControls label {
+  font-size: 1em;
+  color: #2c0c24;
+}
+
+#sortSelect {
+  padding: 8px 12px;
+  font-size: 1em;
+  border: 2px solid #8b8392;
+  border-radius: 6px;
+  background-color: #d8d2dc;
+  color: #2c0c24;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 16px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#sortSelect:hover {
+  border-color: #ee7e49;
+
+}
+#sortSelect:focus {
+  outline: none;
+  border-color: #ee7e49;
+  box-shadow: 0 0 5px rgba(238, 126, 73, 0.5);
+}
+#sortSelect option:hover{
+  background-color: #ee7e49;
+  color: #f2efe7;
+}
+#filterControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.tech-btn {
+  padding: 8px 12px;
+  border: 2px solid #8b8392;
+  background: #d8d2dc;
+  border-radius: 4px;
+  font-size: 0.9em;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.tech-btn.active {
+  background: #ee7e49;
+  color: #f2efe7;
+  border-color: #ee7e49;
+}
 #projectsTable{
   flex: 1;
   background-color: #d8d2dc;
@@ -249,6 +307,9 @@ footer {
     flex: 1 1 calc(50% - 20px);
   }
 
+  .tech-btn {
+    flex: 1 1 calc(20% - 16px);
+  }
   #projectsTable{
     display: none;
   }
@@ -341,7 +402,10 @@ footer {
   #projectsTable{
     display: none;
   }
-
+  .tech-btn {
+    flex: 1 1 calc(33% - 16px);
+    text-align: center;
+  }
   #projectsCards{
     display: flex;
     flex-wrap: wrap;
@@ -363,6 +427,7 @@ footer {
   .project-detail .project-content .project-image {
     flex:1 1 100%;
     width: 100%;
+    align-content: center;
   }
 
     .mobile-description{
