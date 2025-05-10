@@ -229,6 +229,7 @@ footer {
   max-width: 45%;
   height: auto;
   object-fit: cover;
+  border-radius: 8px;
 }
 .project-detail .project-content .project-image img {
   width: 100%;
@@ -240,6 +241,7 @@ footer {
 .mobile-description{
     display:none;
     width: 100%;
+  text-align: center;
 }
 #galery {
   display: grid;
@@ -398,7 +400,10 @@ footer {
     flex: none;
     margin-bottom: 20px;
   }
-
+  #sortSelect {
+    padding: 10px 14px;
+    font-size: 1.05em;
+  }
   #projectsTable{
     display: none;
   }
@@ -421,15 +426,27 @@ footer {
     box-sizing: border-box;
     border-radius: 8px;
   }
+  .project-detail{
+    align-content: center;
+  }
   .project-detail .project-content{
+    width: 100%;
+    margin:5%;
     flex-direction: column;
+    align-content: center;
   }
   .project-detail .project-content .project-image {
     flex:1 1 100%;
     width: 100%;
+    margin-left: 25%;/*srodkowanie obrazu*/
+    margin-right: 25%;
+    border-radius: 8px;
     align-content: center;
+    align-items: center;
   }
-
+  .project-detail .project-content .project-image img{
+    width: 100%;
+  }
     .mobile-description{
         display:inline;
         width: 100%;
