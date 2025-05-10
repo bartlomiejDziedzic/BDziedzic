@@ -102,15 +102,16 @@ h1, h2, h3, h4, h5, h6 {
 
 #sortControls {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 10px;
   margin: 20px auto;
+  width: 100%;
 }
 
 #sortControls label {
   font-size: 1em;
   color: #2c0c24;
+  margin-left: auto;
 }
 
 #sortSelect {
@@ -121,6 +122,7 @@ h1, h2, h3, h4, h5, h6 {
   background-color: #d8d2dc;
   color: #2c0c24;
   cursor: pointer;
+  margin-left: 5px;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
