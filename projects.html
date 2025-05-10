@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pl">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="Bartłomiej Dziedzic – Projekt">
+        <meta property="og:description" content="Portfolio prezentujące moje projekty i zdolnosci">
+        <link rel="shortcut icon" href="img/logo.png" type="image/jpeg">
+        <title>Bartłomiej Dziedzic – Projekty</title>
+        <link rel="stylesheet" href="style/style.css">
+    </head>
+    <body>
+        <header>
+            <img src="img/logo.png" alt="Logo" class="logo">
+            <h1>bartlomiejdziedzic.github.io</h1>
+        </header>
+
+        <nav id="navigation">
+        </nav>
+
+        <main style="background-color:#8b8392">
+            <h2>Projekty nad którymi pracowałem</h2>
+            <div id="sortControls">
+                <label for="sortSelect">Sortuj wg:</label>
+                <select id="sortSelect">
+                    <option value="name-asc">Nazwa (A → Z)</option>
+                    <option value="name-desc">Nazwa (Z → A)</option>
+                    <option value="date-asc">Data (rosnąco)</option>
+                    <option value="date-desc">Data (malejąco)</option>
+                </select>
+            </div>
+            <div id="filterControls">
+                <span>Filtruj po technologiach:</span>
+            </div>
+            <table id="projectsTable">
+                <thead>
+                <tr>
+                    <th>Nazwa</th>
+                    <th>Data</th>
+                    <th>Opis</th>
+                    <th>Technologie</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <div id="projectsCards" class="cardsContainer"></div>
+
+        </main>
+
+        <footer>
+            <p>Bartłomiej Dziedzic 2025</p>
+        </footer>
+
+        <script src="js/nav.js"></script>
+        <script src="js/projects.js"></script>
+    </body>
+</html>
