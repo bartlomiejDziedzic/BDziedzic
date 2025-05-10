@@ -38,7 +38,7 @@ function renderProjects(projects) {
         //odnosnik
         row.style.cursor = "pointer";
         row.addEventListener("click", () => {
-            window.location.href = `ProjectDetails.html?id=${encodeURIComponent(project.id)}`;
+            window.location.href = `projectDetails.html?id=${encodeURIComponent(project.id)}`;
         });
 
         // KARTA
@@ -54,7 +54,7 @@ function renderProjects(projects) {
 
         card.style.cursor = "pointer";
         card.addEventListener("click", () => {
-            window.location.href = `ProjectDetails.html?id=${encodeURIComponent(project.id)}`;
+            window.location.href = `projectDetails.html?id=${encodeURIComponent(project.id)}`;
         });
     });
 
