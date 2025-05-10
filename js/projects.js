@@ -131,13 +131,22 @@ fetch("https://api.myjson.online/v1/records/787c0fb8-d20a-4150-81ee-39af29ebc435
         });
 
         techSet.forEach(tech => {
-            const lbl = document.createElement("label");
-            lbl.innerHTML = `<input type="checkbox" value="${tech}"> ${tech}`;
-            filterControls.appendChild(lbl);
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.classList.add("tech-btn");
+            btn.textContent = tech;
+            btn.dataset.tech = tech;
+            filterControls.appendChild(btn);
 
-            lbl.querySelector("input").addEventListener("change", e => {
-                if (e.target.checked) selectedTech.add(tech);
-                else selectedTech.delete(tech);
+            btn.addEventListener("click", () => {
+                const t = btn.dataset.tech;
+                if (selectedTech.has(t)) {
+                    selectedTech.delete(t);
+                    btn.classList.remove("active");
+                } else {
+                    selectedTech.add(t);
+                    btn.classList.add("active");
+                }
                 applyFiltersAndSort();
             });
         });
