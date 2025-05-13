@@ -340,6 +340,9 @@ footer {
   .long-description{
     display: none;
   }
+  .btn-back{
+    font-size: 1.1em;
+  }
   #galery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -448,6 +451,9 @@ footer {
     margin:5%;
     flex-direction: column;
     align-content: center;
+  }
+  .btn-back{
+    font-size: 1.1em;
   }
   .project-detail .project-content .project-image {
     flex:1 1 100%;
