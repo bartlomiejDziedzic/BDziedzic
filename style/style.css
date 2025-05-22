@@ -188,6 +188,7 @@ tbody{
   gap: 20px;
 }
 td{
+  text-align: center;
   padding: 10px;
 }
 
