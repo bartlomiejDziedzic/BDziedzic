@@ -5,6 +5,21 @@ Portfolio prezentuje moje umiejętności zdobyte na kierunku Inżynieria Informa
 
 ## Opis struktury serwisu
 
+├─ index.html
+├─ about.html
+├─ projects.html
+├─ projectDetails.html
+├─ gallery.html
+├─ style/
+│ └─ style.css
+├─ img/
+│ └─ logo.png
+├─ js/
+│ ├─ nav.js
+│ ├─ projects.js
+│ ├─ gallery.js
+│ └─projectDetails.json
+
 1. **index.html**
     - Strona główna: nagłówek, nawigacja (dynamiczna przez `nav.js`), sekcje „O mnie”, „O tym projekcie” i „Kontakt”. Odwołuje się do `style/style.css` i `js/nav.js`.
 
