@@ -61,14 +61,11 @@ Portfolio prezentuje moje umiejętności zdobyte na kierunku Inżynieria Informa
 ## Testy w róznych przeglądarkach
 
 wirtyna byłą testowana w 4 przegłądarkach:Chrome,Edge,Opera i firefox
-chociaz na wszytkich prezgladarkach strony wygądają identycznie, to jednak są przy nich małe róznice(w porównaniu do Chrome):
 
--Firefox:teksty są troche wieksze
+-Chrome, Edge, Opera, Firefox – wygląd i funkcjonalność identyczne.
+-Safari – testy nie były przeprowadzone z powodu braku dostępu do macOS.
 
-Na safari nie przeprowadzałem testów przez brak dostępów do Maców.
-Obrazy z testów są w folderze testy podzielone na dane przegladarki
-
-
+Screenshots z każdego browsera znajdują się w folderze `testy/` (podkatalogi: `chrome/`, `edge/`, `opera/`, `firefox/`).
 ## Podsumowanie
 Portfolio zostało zbudowane w czystym HTML/CSS/JS, bez zewnętrznych frameworków. Kluczowe cechy:
 - **Prosta struktura** plików i katalogów, oddzielenie stylów i skryptów.
